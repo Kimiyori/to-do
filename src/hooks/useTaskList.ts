@@ -10,13 +10,9 @@ export const useTaskList = () => {
       : todos;
   }, [filterString, todos]);
 
-  const createTask = (newTodo: Data) => {
-    setTodos([...todos, newTodo]);
-  };
+  const createTask = (newTodo: Data) => setTodos([...todos, newTodo]);
 
-  const removeTask = (id: string) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+  const removeTask = (id: string) => setTodos(todos.filter((todo) => todo.id !== id));
 
   const updateTask = (id: string, updatedTask: Partial<Data>) => {
     const updatedTodos = todos.map((todo) => (todo.id === id ? { ...todo, ...updatedTask } : todo));

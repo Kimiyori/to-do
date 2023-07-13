@@ -18,7 +18,7 @@ export const DeleteButton = ({ taskId }: TDeleteButton) => {
       {isActive && (
         <Popup toggleVisible={toggleisActive}>
           <h2>{'Are you sure you want to delete this task?'}</h2>
-          <Button text={"Nah...I'm okay"} onClick={toggleisActive} />
+          <Button text={'Nah...I\'m okay'} onClick={toggleisActive} />
           <Button text={'Delete'} onClick={handleRemove} />
         </Popup>
       )}

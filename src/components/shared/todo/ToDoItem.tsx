@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useReducer, useState } from 'react';
 import { Data } from '../../../types/Main';
 import { DragAndDropContext } from '../../../context/DragAndDropContext';
 import { Button } from '../../core/Button/Button';
@@ -30,7 +30,7 @@ const TaskText = styled.p`
 export const ToDoItem = ({ data }: TToDoItem) => {
   const { handleDragging } = useContext(DragAndDropContext);
 
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, toggleEditing] = useReducer((isEditing) => !isEditing, false);
   const [task, setTask] = useState(data.content);
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
@@ -38,16 +38,15 @@ export const ToDoItem = ({ data }: TToDoItem) => {
     handleDragging(true);
   };
   const handleDragEnd = () => handleDragging(false);
-  const toggleFrom = () => setIsEditing(!isEditing);
 
   return (
     <>
       {isEditing ? (
-        <ToDoEditItem data={data} toggleFrom={toggleFrom} currentTask={task} setCurrentTask={setTask} />
+        <ToDoEditItem data={data} toggleFrom={toggleEditing} currentTask={task} setCurrentTask={setTask} />
       ) : (
         <TaskWrapper draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
           <TaskText>{task}</TaskText>
-          <Button text={'Edit'} onClick={toggleFrom} />
+          <Button text={'Edit'} onClick={toggleEditing} />
           <DeleteButton taskId={data.id} />
         </TaskWrapper>
       )}

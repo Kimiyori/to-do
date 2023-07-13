@@ -16,10 +16,9 @@ const PopupBody = styled.div.attrs(({ ref }) => ({
   ref: ref,
 }))`
   position: absolute;
-  left: 40%;
-  right: 40%;
-  bottom: 40%;
-  top: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   margin: auto;
   background: #f0ac35;
