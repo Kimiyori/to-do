@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
 
 const PopupContainer = styled.div`
   position: fixed;
@@ -11,7 +12,9 @@ const PopupContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
 `;
 
-const PopupBody = styled.div`
+const PopupBody = styled.div.attrs(({ ref }) => ({
+  ref: ref,
+}))`
   position: absolute;
   left: 40%;
   right: 40%;
@@ -23,10 +26,17 @@ const PopupBody = styled.div`
   padding: 2rem;
 `;
 
-export const Popup = ({ children }: { children?: JSX.Element | JSX.Element[] }) => {
+export const Popup = ({
+  toggleVisible,
+  children,
+}: {
+  toggleVisible: () => void;
+  children?: JSX.Element | JSX.Element[];
+}) => {
+  const ref = useOutsideClick(toggleVisible);
   return (
     <PopupContainer>
-      <PopupBody>{children}</PopupBody>
+      <PopupBody ref={ref}>{children}</PopupBody>
     </PopupContainer>
   );
 };
