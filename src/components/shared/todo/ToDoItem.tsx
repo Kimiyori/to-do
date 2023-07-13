@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
 import { Data } from '../../../types/Main';
 import { DragAndDropContext } from '../../../context/DragAndDropContext';
-import { TasksContext } from '../../../context/TasksContext';
 import { Button } from '../../core/Button/Button';
 import { styled } from 'styled-components';
 import { ToDoEditItem } from './ToDoEditItem';
+import { DeleteButton } from '../buttons/DeleteButton';
 
 type TToDoItem = {
   data: Data;
@@ -29,7 +29,6 @@ const TaskText = styled.p`
 `;
 export const ToDoItem = ({ data }: TToDoItem) => {
   const { handleDragging } = useContext(DragAndDropContext);
-  const { removeTask } = useContext(TasksContext);
 
   const [isEditing, setIsEditing] = useState(false);
   const [task, setTask] = useState(data.content);
@@ -39,7 +38,6 @@ export const ToDoItem = ({ data }: TToDoItem) => {
     handleDragging(true);
   };
   const handleDragEnd = () => handleDragging(false);
-  const handleRemove = () => removeTask(data.id);
   const toggleFrom = () => setIsEditing(!isEditing);
 
   return (
@@ -50,7 +48,7 @@ export const ToDoItem = ({ data }: TToDoItem) => {
         <TaskWrapper draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
           <TaskText>{task}</TaskText>
           <Button text={'Edit'} onClick={toggleFrom} />
-          <Button text={'Delete'} onClick={handleRemove} />
+          <DeleteButton taskId={data.id} />
         </TaskWrapper>
       )}
     </>

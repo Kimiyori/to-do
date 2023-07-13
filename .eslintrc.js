@@ -8,12 +8,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  extends: [
-    'plugin:@web-bee-ru/base', // js/ts only
-
-    // npm i --save-dev eslint-plugin-react eslint-plugin-react-hooks
-    'plugin:@web-bee-ru/react', // react
-  ],
+  extends: ['plugin:@web-bee-ru/base', 'plugin:@web-bee-ru/react'],
 
   parser: '@typescript-eslint/parser',
   parserOptions: {
