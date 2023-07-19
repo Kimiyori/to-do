@@ -1,6 +1,6 @@
 import { useReducer, MouseEvent, useContext, FC } from 'react';
 import { styled } from 'styled-components';
-import Dropdown from '../../../assets/Resume.svg';
+import { ReactComponent as Dropdown} from '../../../assets/Resume.svg';
 import { TasksContext } from '../../../context/TasksContext';
 import { toDoCategories } from '../../../data/main';
 
@@ -40,7 +40,7 @@ export const ToDoDropdown: FC<ToDoDropdownProps> = ({ taskId }) => {
   return (
     <ToDoDropdownContainer>
       <div>
-        <img src={Dropdown} alt={'DropdownButton'} onClick={toggleIsShow} />
+        <Dropdown title={'DropdownButton'} onClick={toggleIsShow} />
       </div>
       {isShow && (
         <ToDoDropdownList>
