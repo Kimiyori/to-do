@@ -2,7 +2,7 @@ import { Dispatch, PropsWithChildren, createContext } from 'react';
 import { useTaskList } from '../hooks/useTaskList';
 import { Data } from '../types/Main';
 
-type TTasksContainer = {
+type TasksContainerProps = {
   todos: Data[];
   setTodos: Dispatch<React.SetStateAction<Data[]>>;
   createTask: (newTodo: Data) => void;
@@ -12,7 +12,7 @@ type TTasksContainer = {
   todosFiltered: Data[];
   setFilterString: Dispatch<React.SetStateAction<string>>;
 };
-export const TasksContext = createContext<TTasksContainer>({
+export const TasksContext = createContext<TasksContainerProps>({
   todos: [],
   setTodos: () => undefined,
   createTask: () => undefined,

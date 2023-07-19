@@ -1,30 +1,32 @@
-import { MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from 'react';
 import { styled } from 'styled-components';
 
-type TButton = {
+type ButtonProps = {
   text: string;
   onClick?: (event?: MouseEventHandler<HTMLButtonElement>) => void;
   isDisabled?: boolean;
+  className?: string;
 };
 
 const ButtonElement = styled.button`
   padding: 0.5rem;
-  background-color: #ff6464;
+  background: ${(props) => props.theme.color.Primary};
   cursor: pointer;
-  color: #fff;
-  border: 1px solid #f3a39c;
+  color: ${(props) => props.theme.color.OnPrimary};
+  border: 0;
+  border-left: 1px solid ${(props) => props.theme.color.Outline};
   &:hover {
-    background: #ef1e1e;
+    background: ${(props) => props.theme.color.Secondary};
+    color: ${(props) => props.theme.color.OnSecondary};
   }
   &:disabled {
-    background-color: #b15151;
-    color: #c5c5c5;
+    background: ${(props) => props.theme.color.Surface};
     cursor: auto;
   }
 `;
-export const Button = ({ text, onClick, isDisabled = false }: TButton) => {
+export const Button: FC<ButtonProps> = ({ text, onClick, className, isDisabled = false }) => {
   return (
-    <ButtonElement disabled={isDisabled} onClick={() => onClick && onClick()}>
+    <ButtonElement className={className} disabled={isDisabled} onClick={() => onClick && onClick()}>
       {text}
     </ButtonElement>
   );

@@ -1,11 +1,11 @@
-import { TtoDoCategories } from '../types/Main';
+import { ToDoCategoriesType } from '../types/Main';
 export const ToDoCategoriesNames = {
   New: 'New tasks',
   InProcess: 'In Process',
   Completed: 'Completed',
 };
 
-export const toDoCategories: TtoDoCategories[] = [
+export const toDoCategories: ToDoCategoriesType[] = [
   {
     name: ToDoCategoriesNames.New,
     bgColor: '58,253,45',

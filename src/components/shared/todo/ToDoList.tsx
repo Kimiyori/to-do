@@ -1,24 +1,30 @@
 import styled from 'styled-components';
-import { DragEvent, useContext } from 'react';
+import { DragEvent, FC, useContext } from 'react';
 import { TasksContext } from '../../../context/TasksContext';
 import { DragAndDropContext } from '../../../context/DragAndDropContext';
-import { TtoDoCategories } from '../../../types/Main';
+import { ToDoCategoriesType } from '../../../types/Main';
 import { ToDoItem } from './ToDoItem';
 
-type TToDoList = {
-  status: TtoDoCategories;
-};
-const Container = styled.div<{ $bgColor: string }>`
+export const ToDoListContainer = styled.div<{ $bgColor: string }>`
   width: 100%;
   min-height: 400px;
   text-align: center;
-  background: linear-gradient(0deg, rgba(34, 195, 154, 0) 0%, rgba(${(props) => props.$bgColor}, 0.5) 100%);
-  @media (min-width: 992px) {
+  background: ${(props) => props.theme.color.Secondary};
+  @media ${(props) => props.theme.breakpoints.lg} {
     margin: 0 4rem 0 4rem;
   }
+  h3 {
+    background: rgba(${(props) => props.$bgColor}, 0.3);
+    margin: 0;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
 `;
+type ToDoListProps = {
+  status: ToDoCategoriesType;
+};
 
-export const ToDoList = ({ status }: TToDoList) => {
+export const ToDoList: FC<ToDoListProps> = ({ status }) => {
   const { todosFiltered, updateTask } = useContext(TasksContext);
   const { handleDragging } = useContext(DragAndDropContext);
   const handleDrop = (event: DragEvent<HTMLDivElement>) => {
@@ -31,10 +37,9 @@ export const ToDoList = ({ status }: TToDoList) => {
     event.preventDefault();
   };
   return (
-    <Container $bgColor={status.bgColor} onDragOver={handleDragOver} onDrop={handleDrop}>
+    <ToDoListContainer $bgColor={status.bgColor} onDragOver={handleDragOver} onDrop={handleDrop}>
       <h3>{status.name}</h3>
-      <hr />
-      <div>{todosFiltered.map((item) => status.name === item.status && <ToDoItem data={item} key={item.id} />)}</div>
-    </Container>
+      {todosFiltered.map((item) => status.name === item.status && <ToDoItem data={item} key={item.id} />)}
+    </ToDoListContainer>
   );
 };

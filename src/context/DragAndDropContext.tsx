@@ -2,12 +2,11 @@ import { PropsWithChildren, createContext } from 'react';
 
 import { useDragAndDrop } from '../hooks/useDragAndDrop';
 
-type TDnDContext = {
+type DnDContextProps = {
   isDragging: boolean;
-
   handleDragging: (dragging: boolean) => void;
 };
-export const DragAndDropContext = createContext<TDnDContext>({
+export const DragAndDropContext = createContext<DnDContextProps>({
   isDragging: false,
   handleDragging: () => undefined,
 });

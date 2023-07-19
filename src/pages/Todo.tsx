@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 import { TasksProvider } from '../context/TasksContext';
 import { Board } from '../components/core/Board/Board';
-import { InputAdd } from '../components/shared/fields/InputAddTask/InputAdd';
+import { InputAddTask } from '../components/shared/fields/InputAddTask/InputAdd';
 import { ToDoContainer } from '../components/shared/todo/ToDoContainer';
 import { InputFilter } from '../components/shared/fields/InputFilter/InputFilter';
 
 const MainBackground = styled.main`
-  background: linear-gradient(to right bottom, #3cde90, #81da78, #acd569, #cece66, #e9c76c);
-  height: 100vh;
+  background: ${(props) => props.theme.color.Background};
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  @media (max-width: 992px) {
-    height: 100%;
+  @media ${(props) => props.theme.breakpoints.lg} {
+    height: 100vh;
   }
 `;
 export const ToDo = () => {
@@ -23,7 +23,7 @@ export const ToDo = () => {
         <MainBackground>
           <Board title={'To Do List'} />
           <div>
-            <InputAdd />
+            <InputAddTask />
             <InputFilter />
           </div>
           <ToDoContainer />

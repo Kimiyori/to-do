@@ -1,33 +1,28 @@
-import { useContext, useReducer, useState } from 'react';
+import { FC, useContext, useReducer, useState } from 'react';
 import { Data } from '../../../types/Main';
 import { DragAndDropContext } from '../../../context/DragAndDropContext';
 import { Button } from '../../core/Button/Button';
 import { styled } from 'styled-components';
 import { ToDoEditItem } from './ToDoEditItem';
 import { DeleteButton } from '../buttons/DeleteButton';
+import { TextArea } from '../../core/TextArea/TextArea';
+import { ToDoDragTask } from './ToDoTaskDnD';
+import { ToDoDropdown } from './ToDoDropdown';
+import { devices } from '../../../data/breakpoints';
+import { useMediaQuery } from '../../../hooks/useMediaQuery';
 
-type TToDoItem = {
-  data: Data;
-};
 const TaskWrapper = styled.div`
+  background: ${(props) => props.theme.color.Primary};
   justify-content: center;
   align-items: center;
   display: flex;
-  border: 1px solid #f3a39c;
+  border: 1px solid ${(props) => props.theme.color.Outline};
   margin: 0 1rem 1rem;
-  &:hover {
-    background: #ffcccc7d;
-  }
 `;
-const TaskText = styled.p`
-  padding: 0.5rem;
-  flex-grow: 2;
-  outline: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-`;
-export const ToDoItem = ({ data }: TToDoItem) => {
+type ToDoItemProps = {
+  data: Data;
+};
+export const ToDoItem: FC<ToDoItemProps> = ({ data }) => {
   const { handleDragging } = useContext(DragAndDropContext);
 
   const [isEditing, toggleEditing] = useReducer((isEditing) => !isEditing, false);
@@ -38,16 +33,21 @@ export const ToDoItem = ({ data }: TToDoItem) => {
     handleDragging(true);
   };
   const handleDragEnd = () => handleDragging(false);
-
+  const isDesktop = useMediaQuery(devices.lg);
   return (
     <>
       {isEditing ? (
         <ToDoEditItem data={data} toggleFrom={toggleEditing} currentTask={task} setCurrentTask={setTask} />
       ) : (
         <TaskWrapper draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-          <TaskText>{task}</TaskText>
+          <TextArea text={task} disabled={true} />
           <Button text={'Edit'} onClick={toggleEditing} />
           <DeleteButton taskId={data.id} />
+          {isDesktop ? (
+            <ToDoDragTask taskId={data.id} handleDragging={handleDragging} />
+          ) : (
+            <ToDoDropdown taskId={data.id} />
+          )}
         </TaskWrapper>
       )}
     </>

@@ -1,9 +1,9 @@
-import { ChangeEvent, useContext } from 'react';
+import { ChangeEvent, FC, useContext } from 'react';
 import { InputForm } from '../../../core/Input/Input';
 import { TasksContext } from '../../../../context/TasksContext';
 import { Button } from '../../../core/Button/Button';
 
-export const InputFilter = () => {
+export const InputFilter:FC = () => {
   const { filterString, setFilterString } = useContext(TasksContext);
   const clearFilter = () => setFilterString('');
   return (
@@ -16,7 +16,7 @@ export const InputFilter = () => {
           <Button text={'Clear'} onClick={clearFilter} />
         </>
       }
-      onChange={(event: ChangeEvent<HTMLInputElement>) => setFilterString(event.target.value)}
+      onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setFilterString(event.target.value)}
     />
   );
 };

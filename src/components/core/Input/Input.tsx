@@ -1,33 +1,24 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, FC } from 'react';
 import { styled } from 'styled-components';
+import { TextArea } from '../TextArea/TextArea';
 
-type TInput = {
+type InputProps = {
   inputValue: string;
   actionButtons?: JSX.Element;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder?: string;
 };
 
-const Input = styled.input`
-  padding: 0.5rem;
-  flex-grow: 2;
-  outline: none;
-  border: none;
-`;
 const InputWrapper = styled.div`
   display: flex;
-  background: #fff;
-  border: 1px solid #f3a39c;
+  border: 1px solid ${(props) => props.theme.color.Outline};
   margin: 0 1rem 1rem;
-  &:hover {
-    background: #f6c7c7;
-  }
 `;
-export const InputForm = ({ inputValue, actionButtons, onChange, placeholder }: TInput) => {
+export const InputForm: FC<InputProps> = ({ inputValue, actionButtons, onChange, placeholder }) => {
   return (
     <>
       <InputWrapper>
-        <Input placeholder={placeholder} onChange={onChange} value={inputValue} type="text" />
+        <TextArea placeholder={placeholder} onChange={onChange} text={inputValue} />
         {actionButtons}
       </InputWrapper>
     </>
