@@ -7,7 +7,7 @@ import { Data } from '../../../../types/Main';
 import { Button } from '../../../core/Button/Button';
 import { useError } from '../../../../hooks/useError';
 import { Tooltip } from '../../../core/Tooltip/Tooltip';
-export const InputAddTask:FC = () => {
+export const InputAddTask: FC = () => {
   const [potentialTask, setPotentialTask] = useState('');
   const { error, setError } = useError();
   const { createTask } = useContext(TasksContext);

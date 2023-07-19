@@ -3,7 +3,7 @@ import { InputForm } from '../../../core/Input/Input';
 import { TasksContext } from '../../../../context/TasksContext';
 import { Button } from '../../../core/Button/Button';
 
-export const InputFilter:FC = () => {
+export const InputFilter: FC = () => {
   const { filterString, setFilterString } = useContext(TasksContext);
   const clearFilter = () => setFilterString('');
   return (

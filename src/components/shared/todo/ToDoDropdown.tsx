@@ -1,6 +1,6 @@
 import { useReducer, MouseEvent, useContext, FC } from 'react';
 import { styled } from 'styled-components';
-import { ReactComponent as Dropdown} from '../../../assets/Resume.svg';
+import { ReactComponent as Dropdown } from '../../../assets/Resume.svg';
 import { TasksContext } from '../../../context/TasksContext';
 import { toDoCategories } from '../../../data/main';
 

@@ -16,7 +16,6 @@ export const useMediaQuery = (query: string) => {
 
     handleChange();
 
-
     matchMedia.addEventListener('change', handleChange);
 
     return () => matchMedia.removeEventListener('change', handleChange);

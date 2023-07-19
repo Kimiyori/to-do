@@ -15,7 +15,7 @@ const CategoriesWrapper = styled.div`
   }
 `;
 
-export const ToDoContainer:FC = () => {
+export const ToDoContainer: FC = () => {
   return (
     <DragAndDropProvider>
       <CategoriesWrapper>
