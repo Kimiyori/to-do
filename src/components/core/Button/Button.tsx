@@ -8,6 +8,14 @@ type ButtonProps = {
   className?: string;
 };
 
+const Button: FC<ButtonProps> = ({ text, onClick, className, isDisabled = false }) => {
+  return (
+    <ButtonElement className={className} disabled={isDisabled} onClick={() => onClick?.()}>
+      {text}
+    </ButtonElement>
+  );
+};
+
 const ButtonElement = styled.button`
   padding: 0.5rem;
   background: ${(props) => props.theme.color.Primary};
@@ -24,10 +32,5 @@ const ButtonElement = styled.button`
     cursor: auto;
   }
 `;
-export const Button: FC<ButtonProps> = ({ text, onClick, className, isDisabled = false }) => {
-  return (
-    <ButtonElement className={className} disabled={isDisabled} onClick={() => onClick && onClick()}>
-      {text}
-    </ButtonElement>
-  );
-};
+
+export default Button;

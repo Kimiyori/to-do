@@ -1,10 +1,10 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction, useContext } from 'react';
-import { Data } from '../../../types/Main';
-import { TasksContext } from '../../../context/TasksContext';
-import { InputForm } from '../../core/Input/Input';
-import { Button } from '../../core/Button/Button';
-import { Tooltip } from '../../core/Tooltip/Tooltip';
-import { useError } from '../../../hooks/useError';
+import { Data } from 'types/Main';
+import { TasksContext } from 'context/TasksContext';
+import InputForm from 'components/core/Input/Input';
+import Button from 'components/core/Button/Button';
+import Tooltip from 'components/core/Tooltip/Tooltip';
+import useError from 'hooks/useError';
 
 type ToDoEditItemProps = {
   data: Data;
@@ -13,7 +13,7 @@ type ToDoEditItemProps = {
   setCurrentTask: Dispatch<SetStateAction<string>>;
 };
 
-export const ToDoEditItem: FC<ToDoEditItemProps> = ({ data, toggleFrom, currentTask, setCurrentTask }) => {
+const ToDoEditItem: FC<ToDoEditItemProps> = ({ data, toggleFrom, currentTask, setCurrentTask }) => {
   const { updateTask } = useContext(TasksContext);
   const handleCancel = () => {
     setCurrentTask(data.content);
@@ -51,3 +51,5 @@ export const ToDoEditItem: FC<ToDoEditItemProps> = ({ data, toggleFrom, currentT
     </>
   );
 };
+export default ToDoEditItem;
+

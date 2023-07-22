@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useError = (timeout: number = 2000) => {
+const useError = (timeout: number = 2000) => {
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -8,3 +8,5 @@ export const useError = (timeout: number = 2000) => {
   }, [error, timeout]);
   return { error, setError };
 };
+export default useError;
+

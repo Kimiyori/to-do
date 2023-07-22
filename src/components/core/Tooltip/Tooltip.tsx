@@ -1,6 +1,16 @@
 import { FC } from 'react';
 import { styled } from 'styled-components';
 
+type TooltipProps = { content: string };
+
+const Tooltip: FC<TooltipProps> = ({ content }) => {
+  return (
+    <TooltipWrapper>
+      <TooltipTip>{content}</TooltipTip>
+    </TooltipWrapper>
+  );
+};
+
 const TooltipWrapper = styled.div`
   position: relative;
 `;
@@ -14,11 +24,5 @@ const TooltipTip = styled.div`
   background: ${(props) => props.theme.color.Error};
   z-index: 100;
 `;
-type TooltipProps = { content: string };
-export const Tooltip: FC<TooltipProps> = ({ content }) => {
-  return (
-    <TooltipWrapper>
-      <TooltipTip>{content}</TooltipTip>
-    </TooltipWrapper>
-  );
-};
+
+export default Tooltip;

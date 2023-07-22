@@ -1,9 +1,9 @@
 import { ChangeEvent, FC, useContext } from 'react';
-import { InputForm } from '../../../core/Input/Input';
-import { TasksContext } from '../../../../context/TasksContext';
-import { Button } from '../../../core/Button/Button';
+import InputForm from 'components/core/Input/Input';
+import { TasksContext } from 'context/TasksContext';
+import Button from 'components/core/Button/Button';
 
-export const InputFilter: FC = () => {
+const InputFilter: FC = () => {
   const { filterString, setFilterString } = useContext(TasksContext);
   const clearFilter = () => setFilterString('');
   return (
@@ -20,3 +20,4 @@ export const InputFilter: FC = () => {
     />
   );
 };
+export default InputFilter;

@@ -1,8 +1,20 @@
 import { styled } from 'styled-components';
-import { DragAndDropProvider } from '../../../context/DragAndDropContext';
-import { toDoCategories } from '../../../data/main';
-import { ToDoList } from './ToDoList';
+import { DragAndDropProvider } from 'context/DragAndDropContext';
+import { toDoCategories } from 'data/main';
+import ToDoList from 'components/shared/todo/ToDoList';
 import { FC } from 'react';
+
+const ToDoContainer: FC = () => {
+  return (
+    <DragAndDropProvider>
+      <CategoriesWrapper>
+        {toDoCategories.map((category) => (
+          <ToDoList status={category} key={category.name} />
+        ))}
+      </CategoriesWrapper>
+    </DragAndDropProvider>
+  );
+};
 
 const CategoriesWrapper = styled.div`
   width: 100%;
@@ -15,14 +27,4 @@ const CategoriesWrapper = styled.div`
   }
 `;
 
-export const ToDoContainer: FC = () => {
-  return (
-    <DragAndDropProvider>
-      <CategoriesWrapper>
-        {toDoCategories.map((category) => (
-          <ToDoList status={category} key={category.name} />
-        ))}
-      </CategoriesWrapper>
-    </DragAndDropProvider>
-  );
-};
+export default ToDoContainer;

@@ -1,6 +1,6 @@
 import { Dispatch, PropsWithChildren, createContext } from 'react';
-import { useTaskList } from '../hooks/useTaskList';
-import { Data } from '../types/Main';
+import useTaskList from 'hooks/useTaskList';
+import { Data } from 'types/Main';
 
 type TasksContainerProps = {
   todos: Data[];

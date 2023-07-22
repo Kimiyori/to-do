@@ -1,6 +1,6 @@
 import { PropsWithChildren, createContext } from 'react';
 
-import { useDragAndDrop } from '../hooks/useDragAndDrop';
+import useDragAndDrop from 'hooks/useDragAndDrop';
 
 type DnDContextProps = {
   isDragging: boolean;

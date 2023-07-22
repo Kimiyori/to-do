@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './globalStyles';
-import { ToDo } from './pages/Todo';
+import ToDo from './pages/Todo';
 import { theme } from './data/styleVariables';
 
 function App() {

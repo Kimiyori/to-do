@@ -1,4 +1,4 @@
-import { devices } from './breakpoints';
+import { devices } from 'data/breakpoints';
 
 export const theme = {
   breakpoints: devices,

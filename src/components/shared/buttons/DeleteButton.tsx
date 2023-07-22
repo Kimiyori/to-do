@@ -1,20 +1,14 @@
 import { FC, useContext, useReducer } from 'react';
-import { TasksContext } from '../../../context/TasksContext';
-import { Button } from '../../core/Button/Button';
-import { Popup } from '../../core/Popup/Popup';
-import { styled } from 'styled-components';
+import { TasksContext } from 'context/TasksContext';
+import Button from 'components/core/Button/Button';
+import Popup from 'components/core/Popup/Popup';
+import styled from 'styled-components';
 
-export const ButtonContainer = styled.section`
-  display: flex;
-  justify-content: space-evenly;
-`;
-export const StyledPopupButton = styled(Button)`
-  border: 1px solid ${(props) => props.theme.color.Outline};
-`;
 type DeleteButtonProps = {
   taskId: string;
 };
-export const DeleteButton: FC<DeleteButtonProps> = ({ taskId }) => {
+
+const DeleteButton: FC<DeleteButtonProps> = ({ taskId }) => {
   const [isActive, toggleisActive] = useReducer((isActive) => !isActive, false);
   const { removeTask } = useContext(TasksContext);
   const handleRemove = () => {
@@ -36,3 +30,13 @@ export const DeleteButton: FC<DeleteButtonProps> = ({ taskId }) => {
     </>
   );
 };
+
+export const ButtonContainer = styled.section`
+  display: flex;
+  justify-content: space-evenly;
+`;
+export const StyledPopupButton = styled(Button)`
+  border: 1px solid ${(props) => props.theme.color.Outline};
+`;
+
+export default DeleteButton;

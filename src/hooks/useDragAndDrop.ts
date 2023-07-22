@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const useDragAndDrop = () => {
+const useDragAndDrop = () => {
   const [isDragging, setIsDragging] = useState(false);
   const handleDragging = (dragging: boolean) => {
     setIsDragging(dragging);
@@ -10,3 +10,5 @@ export const useDragAndDrop = () => {
     handleDragging,
   };
 };
+export default useDragAndDrop;
+

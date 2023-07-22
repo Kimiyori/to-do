@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
-import { Data } from '../types/Main';
+import { Data } from 'types/Main';
 
-export const useTaskList = () => {
+const useTaskList = () => {
   const [todos, setTodos] = useState<Data[]>([]);
   const [filterString, setFilterString] = useState('');
   const todosFiltered = useMemo(() => {
@@ -30,3 +30,5 @@ export const useTaskList = () => {
     setFilterString,
   };
 };
+export default useTaskList;
+
